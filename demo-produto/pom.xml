@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>br.com.pcsist.demo</groupId>
+    <artifactId>demo-produto-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>demo-produto</artifactId>
+  <name>WinThor :: WinThor :: Produto</name>
+  <packaging>war</packaging>
+
+  <properties>
+    <context>demo-protuo</context>
+    <bundleType>/war</bundleType>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-core-data</artifactId>
+      <type>bundle</type>
+    </dependency>
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-core-servico</artifactId>
+      <type>bundle</type>
+    </dependency>
+    <dependency>
+      <groupId>br.com.pcsist.demo</groupId>
+      <artifactId>demo-produto-domain</artifactId>
+      <type>bundle</type>
+    </dependency>
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-core-basic</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>web-bundle</id>
+            <phase>process-classes</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.kongchen</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <configuration>
+          <apiSources>
+            <apiSource>
+              <locations>br.com.pcsist.demo</locations>
+            </apiSource>
+          </apiSources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

@@ -1,0 +1,3 @@
+
+Export-Package: br.com.pcsist.demo.produto.domain
+Private-Package: br.com.pcsist.demo.produto.domain.impl

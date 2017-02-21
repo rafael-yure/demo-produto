@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="${project.artifactId}-${pom.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
+
+  <feature name="demo-produto" description="Modulo Produto WinThor" start-level="70"
+    version="${pom.version}">
+    <feature dependency="true">winthor-core-data</feature>
+    <feature dependency="true">winthor-core-servico</feature>
+    <feature dependency="true">winthor-ferramenta-usuario</feature>
+    <bundle start-level="70">mvn:${groupId}/demo-produto-domain/${pom.version}</bundle>
+    <bundle start-level="75">mvn:${groupId}/demo-produto/${pom.version}/war</bundle>
+  </feature>
+
+</features>

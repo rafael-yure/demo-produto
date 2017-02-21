@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>br.com.pcsist.demo</groupId>
+    <artifactId>demo-produto-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>demo-produto-domain</artifactId>
+  <name>WinThor :: WinThor :: Produto :: Domain</name>
+  <packaging>bundle</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-core-data</artifactId>
+      <type>bundle</type>
+    </dependency>
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-core-servico</artifactId>
+      <type>bundle</type>
+    </dependency>
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-core-basic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>br.com.pcsist.winthor.ferramenta.usuario</groupId>
+      <artifactId>ferramenta-usuario-domain</artifactId>
+      <version>1.1.0-SNAPSHOT</version>
+      <type>bundle</type>
+    </dependency>
+
+    <dependency>
+      <groupId>br.com.pcsist.winthor.core</groupId>
+      <artifactId>winthor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>domain-bundle</id>
+            <phase>process-classes</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
