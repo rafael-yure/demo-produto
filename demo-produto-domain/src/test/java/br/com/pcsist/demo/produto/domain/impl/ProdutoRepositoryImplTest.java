@@ -22,24 +22,35 @@ public class ProdutoRepositoryImplTest extends AbstractPersistenceTest {
   @Before
   public void setUp() throws Exception {
     dataBuilder = new ProdutoTestDataBuilder(dataSource());
-  }
-
-  @Test
-  public void testTodos_SemDados() throws Exception {
-    List<Produto> todos = produtoRepository.todos();
-
-    assertThat(todos).isNotNull();
-    assertThat(todos).hasSize(0);
+    dataBuilder.codProd(1).add("descricao", "descricaoProduto1").insert();
   }
 
   @Test
   public void testTodos_ComUmProduto() throws Exception {
-    dataBuilder.codProd(1).add("descricao", "P1").insert();
-
     List<Produto> todos = produtoRepository.todos();
 
     assertThat(todos).isNotNull();
     assertThat(todos).hasSize(1);
+  }
+
+  @Test
+  public void testAlterar() throws Exception {
+    Produto produto = produtoRepository.comCodigo(1);
+
+    produto.setDescricao("NovaDescricao");
+    produtoRepository.alterar(produto);
+
+    assertThat(produto.getDescricao()).isEqualTo("NovaDescricao");
+  }
+
+  @Test
+  public void testDeletar() throws Exception {
+    produtoRepository.deletar(1);
+
+    Produto produto = produtoRepository.comCodigo(1);
+
+    assertThat(produto.getDataExclusao()).isNotNull();
+
   }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import br.com.pcsist.demo.produto.jackson.ProdutoObjectMapper;
 import br.com.pcsist.winthor.core.autenticacao.LoggedInService;
 import br.com.pcsist.winthor.core.test.TestPersistenceConfig;
 
@@ -27,4 +28,13 @@ public class RestTestConfig {
     return Mockito.mock(WebSecurityManager.class);
   }
 
+  @Bean
+  public ProdutoApplication produtoApplication() {
+    return new ProdutoApplication();
+  }
+
+  @Bean
+  public ProdutoObjectMapper objectMapper() {
+    return new ProdutoObjectMapper();
+  }
 }

@@ -18,8 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import br.com.pcsist.demo.produto.jackson.ProdutoObjectMapper;
 import br.com.pcsist.winthor.core.test.AbstractShiroTest;
 
 @Transactional
@@ -29,7 +28,7 @@ import br.com.pcsist.winthor.core.test.AbstractShiroTest;
 public abstract class AbstractResourceTest extends AbstractShiroTest {
 
   @Autowired
-  private ObjectMapper objectMapper;
+  private ProdutoObjectMapper objectMapper;
   @Autowired
   private DataSource dataSource;
   @Autowired

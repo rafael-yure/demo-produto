@@ -26,9 +26,4 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
   }
 
-  @Override
-  public void salvar(Produto produto) {
-
-  }
-
 }

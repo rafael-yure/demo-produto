@@ -1,26 +1,17 @@
 package br.com.pcsist.demo.produto.domain;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ProdutoRepository {
 
   List<Produto> todos();
 
-  void salvar(Produto produto);
+  Produto comCodigo(int codigo);
+
+  void inserir(Produto produto);
 
   void alterar(Produto produto);
 
-  Produto comCodigo(int codigo);
-
-  long totalDeProdutos();
-
-  List<Long> codigos();
-
-  List<Map<String, Object>> codigosValores();
-
-  void salvar(List<Produto> produtos);
-
-  long valorTotal();
+  void deletar(int codigoProduto);
 
 }

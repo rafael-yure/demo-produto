@@ -1,5 +1,6 @@
 package br.com.pcsist.demo.produto.domain;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import org.apache.commons.lang3.Validate;
@@ -11,6 +12,7 @@ public class Produto {
   private int codigo;
   private String descricao;
   private boolean ativo;
+  private LocalDate dataExclusao;
 
   public Produto() {
     super();
@@ -18,6 +20,14 @@ public class Produto {
 
   public int getCodigo() {
     return codigo;
+  }
+
+  public LocalDate getDataExclusao() {
+    return dataExclusao;
+  }
+
+  public void setDataExclusao(LocalDate dataExclusao) {
+    this.dataExclusao = dataExclusao;
   }
 
   public void setCodigo(int codigo) {
