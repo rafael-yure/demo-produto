@@ -33,6 +33,20 @@ public class ProdutoResourceTest extends AbstractResourceTest {
   }
 
   @Test
+  public void testTodos_ComDados() throws Exception {
+    dataBuilder.codProd(1).add("descricao", "descricaoProduto1").insert();
+    dataBuilder.codProd(2).add("descricao", "descricaoProduto2").insert();
+    mockMvc().perform(get("/")
+      .contentType(MediaType.APPLICATION_JSON))
+      .andExpect(status().isOk())
+      .andDo(print())
+      .andExpect(jsonPath("$.[0].codigo", is(1)))
+      .andExpect(jsonPath("$.[0].descricao", is("descricaoProduto1")))
+      .andExpect(jsonPath("$.[1].codigo", is(2)))
+      .andExpect(jsonPath("$.[1].descricao", is("descricaoProduto2")));
+  }
+
+  @Test
   public void testInserir() throws Exception {
     ProdutoDto dto = new ProdutoDto();
     dto.setCodigo("1");
