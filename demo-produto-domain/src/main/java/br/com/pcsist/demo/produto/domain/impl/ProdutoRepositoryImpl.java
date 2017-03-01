@@ -12,19 +12,10 @@ import org.springframework.stereotype.Repository;
 
 import br.com.pcsist.demo.produto.domain.Produto;
 import br.com.pcsist.demo.produto.domain.ProdutoRepository;
-import br.com.pcsist.winthor.core.servico.data.DbLocalDateParser;
+import br.com.pcsist.winthor.core.servico.data.WinthorDbUtils;
 
 @Repository("produtoRepository")
 public class ProdutoRepositoryImpl implements ProdutoRepository {
-
-  /*
-   * codprod NUMBER(6) not null,
-   * descricao VARCHAR2(40) not null,
-   * embalagem VARCHAR2(12) not null,
-   * codepto NUMBER(6) not null,
-   * codsec NUMBER(6) not null,
-   * codfornec NUMBER(6) not null,
-   */
 
   private static final String INSERT_PRODUTO = "insert into pcprodut (codprod, descricao, embalagem,"
       + " codepto, codsec, codfornec) values (?, ?, \'123\', 1, 1, 1)";
@@ -45,7 +36,7 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
 
   @Override
   public void inserir(Produto produto) {
-    template.update(INSERT_PRODUTO, produto.getCodigo(), produto.isAtivo());
+    template.update(INSERT_PRODUTO, produto.getCodigo(), produto.getDescricao());
   }
 
   @Override
@@ -68,7 +59,7 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
   @Override
   public void deletar(int codigoProduto) {
     String sql = "update pcprodut set dtexclusao = ? where codprod = ?";
-    template.update(sql, DbLocalDateParser.to(LocalDateTime.now()), codigoProduto);
+    template.update(sql, WinthorDbUtils.toWinthorDate(LocalDateTime.now()), codigoProduto);
 
   }
 

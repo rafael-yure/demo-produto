@@ -1,5 +1,6 @@
 package br.com.pcsist.demo.produto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -11,13 +12,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+
+import br.com.pcsist.demo.produto.domain.Produto;
+import br.com.pcsist.demo.produto.domain.ProdutoRepository;
 import br.com.pcsist.demo.produto.jackson.ProdutoDto;
 import br.com.pcsist.winthor.core.test.databuilder.ProdutoTestDataBuilder;
 
 public class ProdutoResourceTest extends AbstractResourceTest {
 
   private ProdutoTestDataBuilder dataBuilder;
+
+  @Autowired
+  private ProdutoRepository produtoRepository;
 
   @Before
   public void setUp() throws Exception {
@@ -55,7 +63,13 @@ public class ProdutoResourceTest extends AbstractResourceTest {
     mockMvc().perform(post("/")
       .contentType(MediaType.APPLICATION_JSON)
       .content(json(dto)))
+      .andDo(print())
       .andExpect(status().isOk());
+
+    Produto produto = produtoRepository.comCodigo(1);
+
+    assertThat(produto.getCodigo()).isEqualTo(1);
+    assertThat(produto.getDescricao()).isEqualTo("Produto 1");
   }
 
   @Test
